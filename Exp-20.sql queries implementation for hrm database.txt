@@ -1,0 +1,76 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+    
+| faculty       |
+| employee      |
+| persons       |
+| student       |
++---------------+
+19 rows in set (0.02 sec)
+
+mysql> create table Employee1(Emp_id int(5),Emp_name varchar(25),DOB DATE,DOJ DATE,Salary int(5),Address char(25),Experience int(1));
+Query OK, 0 rows affected, 3 warnings (0.04 sec)
+
+mysql> desc Employee1;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Emp_id     | int         | YES  |     | NULL    |       |
+| Emp_name   | char(25)    | YES  |     | NULL    |       |
+| DOB        | date        | YES  |     | NULL    |       |
+| DOJ        | date        | YES  |     | NULL    |       |
+| Salary     | int         | YES  |     | NULL    |       |
+| Address    | char(25)    | YES  |     | NULL    |       |
+| Experience | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> insert into Employee1 values(150,"chiru",'2002-10-02','2022-07-18',10000,"hyderabad",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee1 values(151,"arjun",'2001-01-11','2022-09-27',125000,"odissa",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee1 values(152,"babu",'2000-02-05','2020-05-20',100000,"karnataka",3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Employee1 values(153,"krishna",'2003-02-22','2022-06-15',165000,"kurnool",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee1 values(154,"honey",'2000-01-28','2022-05-01',145000,"banglore",3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from Employee1;
++--------+----------+------------+------------+--------+-----------+------------+
+| Emp_id | Emp_name | DOB        | DOJ        | Salary | Address   | Experience |
++--------+----------+------------+------------+--------+-----------+------------+
+|    150 | chiru    | 2002-10-02 | 2022-07-18 | 100000 | hyderabad |          2 |
+|    151 | arjun    | 2001-01-11 | 2022-09-27 | 125000 | odissa    |          2 |
+|    152 | babu     | 2000-02-05 | 2020-05-20 | 100000 | karnataka |          3 |
+|    153 | krishna  | 2003-02-22 | 2022-06-15 | 165000 | kurnool   |          2 |
+|    154 | honey    | 2000-01-28 | 2022-05-01 | 145000 | banglore  |          3 |
++--------+----------+------------+------------+--------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update Employee1 set Salary=150000 where Address="hyderabad";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Employee1 set Salary=120000 where Address="karnataka";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from Employee1;
++--------+----------+------------+------------+--------+-----------+------------+
+| Emp_id | Emp_name | DOB        | DOJ        | Salary | Address   | Experience |
++--------+----------+------------+------------+--------+-----------+------------+
+|    150 | chiru    | 2002-10-02 | 2022-07-18 | 150000 | hyderabad |          2 |
+|    151 | arjun    | 2001-01-11 | 2022-09-27 | 125000 | odissa    |          2 |
+|    152 | babu     | 2000-02-05 | 2020-05-20 | 120000 | karnataka |          3 |
+|    153 | krishna  | 2003-02-22 | 2022-06-15 | 165000 | kurnool   |          2 |
+|    154 | honey    | 2000-01-28 | 2022-05-01 | 145000 | banglore  |          3 |
++--------+----------+------------+------------+--------+-----------+------------+
+5 rows in set (0.00 sec)
