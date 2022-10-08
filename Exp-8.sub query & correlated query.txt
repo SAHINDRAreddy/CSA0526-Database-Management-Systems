@@ -1,0 +1,83 @@
+mysql> use student;
+Database changed
+mysql> desc std;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| id      | int(10)  | YES  |     | NULL    |       |
+| Name    | char(20) | YES  |     | NULL    |       |
+| Age     | int(10)  | YES  |     | NULL    |       |
+| Subject | char(10) | YES  |     | NULL    |       |
+| Games   | char(10) | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql>  insert into std values(14,'mani',19,'iot','footbal'),(15,'naveen',20,'math'
+,'kho kho'),(16,'tejesh',21,'phy','kabaddi'),(17,'rupesh',22,'che','shuttle');
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select*from std;
++------+--------+------+---------+---------+
+| id   | Name   | Age  | Subject | Games   |
++------+--------+------+---------+---------+
+|   14 | mani   |   19 | iot     | footbal |
+|   15 | naveen |   20 | math    | kho kho |
+|   16 | tejesh |   21 | phy     | kabaddi |
+|   17 | rupesh |   22 | che     | shuttle |
++------+--------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select id,name
+    -> from std
+    -> where name in(select name from std where subject='iot');
++------+-------+
+| id   | name  |
++------+-------+
+|   14 | mani  |
++------+-------+
+1 row in set (0.00 sec)
+
+mysql> create table test(id int(10),name char(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc test;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| id    | int(10)  | YES  |     | NULL    |       |
+| name  | char(20) | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+
+mysql>  insert into test(id,name)
+    ->  select id,name
+    ->  from std where games='kho kho';
+Query OK, 1 row affected (0.00 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> select*from test;
++------+-------+
+| id   | name  |
++------+-------+
+|  15  | naveen|
++------+-------+
+1 row in set (0.00 sec)
+
+mysql> select id,(select name from test where id=17) as name,age,subject games from std where id=17;
++------+------+------+-------+
+| id   | name | age  | games |
++------+------+------+-------+
+|   17 | NULL |  22  |shuttle|
++------+------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> select*from std where age>=(select avg(age)from std);
++------+--------+------+---------+--------+
+| id   | Name   | Age  | Subject | Games  |
++------+--------+------+---------+--------+
+|   14 | mani   |  19  |  iot    | footbal|
+|   15 | naveen |  20  |  math   | kho kho|
++------+--------+------+---------+--------+
+2 rows in set (0.00 sec)
