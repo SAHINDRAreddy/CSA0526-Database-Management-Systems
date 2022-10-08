@@ -1,0 +1,69 @@
+mysql> use student;
+Database changed
+mysql> select*from std;
++------+--------+------+---------+---------+
+| id   | Name   | Age  | Subject | Games   |
++------+--------+------+---------+---------+
+|   14 | mani   |   19 |   iot   | footbal |
+|   15 | naveen |   20 |   math  | kho kho |
+|   16 | tejesh |   21 |   phy   | kabaddi |
+|   17 | rupesh |   22 |   che   | shuttle |
++------+--------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| course            |
+| department        |
+| faculty           |
+| persons           |
+| std               |
+| student           |
+| student_report    |
+| test              |
++-------------------+
+8 rows in set (0.00 sec)
+
+mysql> select*from student_report;
++-------+---------+-------+------------+-------+
+| regn0 | name    | marks | totalmarks | Grade |
++-------+---------+-------+------------+-------+
+|  4689 | naren   |    86 |        100 | B     |
+|  4690 | shyam   |    92 |        100 | A     |
+|  4691 | nivas   |    95 |        100 | S     |
+|  4692 | kishore |    98 |        100 | S     |
++-------+---------+-------+------------+-------+
+4 rows in set (0.00 sec)
+
+
+mysql> create View marks_view as select name,marks and Grade from student_report;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select*from marks_view;
++---------+-----------------+
+| name    | marks and Grade |
++---------+-----------------+
+| naren   |               0 |
+| shyam   |               0 |
+| Nivas   |               0 |
+| kishore |               0 |
++---------+-----------------+
+4 rows in set, 4 warnings (0.00 sec)
+
+mysql> create index name on student_report(name);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> show index from student_report;
++----------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table          | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++----------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| student_report |          1 | name     |            1 | name        | A         |           4 |     NULL | NULL   | YES  | BTREE      |         |               |
++----------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.00 sec)
+
+mysql>
