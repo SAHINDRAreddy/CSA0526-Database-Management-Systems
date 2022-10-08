@@ -1,0 +1,116 @@
+mysql> USE STUDENT;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| course            |
+| department        |
+| faculty           |
+| marks_view        |
+| persons           |
+| std               |
+| student           |
+| student_report    |
+| test              |
+| university        |
++-------------------+
+10 rows in set (0.00 sec)
+
+mysql> select*from marks_view;
++---------+-----------------+
+| name    | marks and Grade |
++---------+-----------------+
+| naren   |               0 |
+| shyam   |               0 |
+| nivas   |               0 |
+| kishore |               0 |
+| sanjay  |               0 |
+| fawaz   |               0 |
+| akshay  |               0 |
++---------+-----------------+
+7 rows in set, 7 warnings (0.01 sec)
+
+mysql> select*from student_report;
++-------+---------+-------+------------+-------+
+| regn0 | name    | marks | totalmarks | Grade |
++-------+---------+-------+------------+-------+
+|  4689 | naren   |    86 |        100 | B     |
+|  4690 | shyam   |    92 |        100 | A     |
+|  4691 | Nivas   |    95 |        100 | S     |
+|  4692 | kishore |    98 |        100 | S     |
+|  4693 | sanjay  |    87 |        100 | B     |
+|  4694 | fawaz   |    88 |        100 | B     |
+|  4695 | akshay  |    91 |        100 | A     |
++-------+---------+-------+------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select@@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student_report values(4696,'joel',99,100,'S');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from student_report;
++-------+----------+-------+------------+-------+
+| regn0 | name     | marks | totalmarks | Grade |
++-------+----------+-------+------------+-------+
+|  4689 | naren    |    86 |        100 | B     |
+|  4690 | shyam    |    92 |        100 | A     |
+|  4691 | Nivas    |    95 |        100 | S     |
+|  4692 | kishore  |    98 |        100 | S     |
+|  4693 | sanjay   |    87 |        100 | B     |
+|  4694 | fawaz    |    88 |        100 | B     |
+|  4695 | akshay   |    91 |        100 | A     |
+|  4696 | joel     |    99 |        100 | S     |
++-------+----------+-------+------------+-------+
+8 rows in set (0.00 sec)
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select@@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            0 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> delete from student_report where Grade='B';
+Query OK, 3 rows affected (0.00 sec)
+
+mysql> select * from student_report;
++-------+----------+-------+------------+-------+
+| regn0 | name     | marks | totalmarks | Grade |
++-------+----------+-------+------------+-------+
+|  4690 | shyam    |    92 |        100 | A     |
+|  4691 | Nivas    |    95 |        100 | S     |
+|  4692 | kishore  |    98 |        100 | S     |
+|  4695 | akshay   |    91 |        100 | A     |
+|  4696 | joel     |    99 |        100 | S     |
++-------+----------+-------+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student_report;
++-------+----------+-------+------------+-------+
+| regn0 | name     | marks | totalmarks | Grade |
++-------+----------+-------+------------+-------+
+|  4689 | naren    |    86 |        100 | B     |
+|  4690 | shyam    |    92 |        100 | A     |
+|  4691 | nivas    |    95 |        100 | S     |
+|  4692 | kishore  |    98 |        100 | S     |
+|  4693 | sanjay   |    87 |        100 | B     |
+|  4694 | fawaz    |    88 |        100 | B     |
+|  4695 | akshay   |    91 |        100 | A     |
+|  4696 | joel     |    99 |        100 | S     |
++-------+----------+-------+------------+-------+
+8 rows in set (0.00 sec)
