@@ -1,0 +1,82 @@
+mysql> select* from bio;
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    1 | rupesh | che     |    97 | s     |
+|    2 | hari   | dbms    |    79 | b     |
+|    3 | ramya  | dbms    |    87 | b     |
++------+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select* from bio
+    ->  where subject in('che','dbms');
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    1 | rupesh | che     |    97 | s     |
+|    2 | hari   | dbms    |    79 | b     |
+|    3 | ramya  | dbms    |    87 | b     |
++------+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select* from bio
+    -> where subject between 'che' and 'dbms';
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    1 | rupesh | che     |    97 | s     |
+|    2 | hari   | dbms    |    79 | b     |
+|    3 | ramya  | dbms    |    87 | b     |
++------+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from bio
+    -> where subject between 'che' and 'dbms';
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    1 | rupesh | che     |    97 | s     |
+|    2 | hari   | dbms    |    79 | b     |
+|    3 | ramya  | dbms    |    87 | b     |
++------+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select count(subject) from bio;
++----------------+
+| count(subject) |
++----------------+
+|              3 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks)as total_sum from bio;
++-----------+
+| total_sum |
++-----------+
+|       263 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select max(marks) from bio;
++------------+
+| max(marks) |
++------------+
+|         97 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) from bio;
++------------+
+| min(marks) |
++------------+
+|         79 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(marks) from bio;
++------------+
+| avg(marks) |
++------------+
+|    87.6667 |
++------------+
+1 row in set (0.00 sec)
