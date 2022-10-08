@@ -1,0 +1,72 @@
+mysql> use bio;
+Database changed
+mysql> select* from bio;
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    1 | rupesh | che     |    97 | s     |
+|    2 | hari   | dbms    |    79 | b     |
+|    3 | ramya  | dbms    |    87 | b     |
++------+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select* from bio
+    -> order by subject;
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    1 | rupesh | che     |    97 | s     |
+|    2 | hari   | dbms    |    79 | b     |
+|    3 | ramya  | dbms    |    87 | b     |
++------+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from bio order by marks;
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    2 | hari   | dbms    |    79 | b     |
+|    3 | ramya  | dbms    |    87 | b     |
+|    1 | rupesh | che     |    97 | s     |
++------+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from bio group by slno;
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    1 | rupesh | che     |    97 | s     |
+|    2 | hari   | dbms    |    79 | b     |
+|    3 | ramya  | dbms    |    87 | b     |
++------+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from bio group by grade;
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    2 | hari   | dbms    |    79 | b     |
+|    1 | rupesh | che     |    97 | s     |
++------+--------+---------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select* from bio
+    -> group by marks
+    -> having marks>90;
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    1 | rupesh | che     |    97 | s     |
++------+--------+---------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> select* from bio
+    -> having marks>78;
++------+--------+---------+-------+-------+
+| slno | sname  | subject | marks | grade |
++------+--------+---------+-------+-------+
+|    1 | rupesh | che     |    97 | s     |
+|    2 | hari   | dbms    |    79 | b     |
+|    3 | ramya  | dbms    |    87 | b     |
++------+--------+---------+-------+-------+
+3 rows in set (0.00 sec)
