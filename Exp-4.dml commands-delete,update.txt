@@ -1,0 +1,44 @@
+mysql> create table stddata(studentid int(12),studentname char(15),gender char,phoneno int(10),year int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into stddata values(17,'nani','m','799532','2004'),(18,'sai','m','970513','2003'),(19,'priya','f','709352','2002');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from stddata;
++-----------+-------------+--------+---------+------+
+| studentid | studentname | gender | phoneno | year |
++-----------+-------------+--------+---------+------+
+|        17 | nani        | m      |  799532 | 2004 |
+|        18 | sai         | m      |  970513 | 2003 |
+|        19 | priya       | f      |  709352 | 2002 |
++-----------+-------------+--------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> delete from stddata
+    -> where studentid=17;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from stddata;
++-----------+-------------+--------+---------+------+
+| studentid | studentname | gender | phoneno | year |
++-----------+-------------+--------+---------+------+
+|        18 | sai         | m      |  970513 | 2003 |
+|        19 | priya       | f      |  709352 | 2002 |
++-----------+-------------+--------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> update stddata
+    -> set phoneno='970514902'
+    -> where studentid=18;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from stddata;
++-----------+-------------+--------+-----------+------+
+| studentid | studentname | gender | phoneno   | year |
++-----------+-------------+--------+-----------+------+
+|        18 | sai         | m      | 970514902 | 2003 |
+|        19 | priya       | f      |    709352 | 2002 |
++-----------+-------------+--------+-----------+------+
+2 rows in set (0.00 sec)
