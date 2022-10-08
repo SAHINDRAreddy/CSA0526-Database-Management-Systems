@@ -1,0 +1,63 @@
+mysql> use student;
+Database changed
+mysql> desc persons;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| id      | int(12)  | YES  |     | NULL    |       |
+| fname   | char(15) | YES  |     | NULL    |       |
+| lname   | char(15) | YES  |     | NULL    |       |
+| address | char(50) | YES  |     | NULL    |       |
+| city    | char(20) | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> create user x;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> grant all on persons to x;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for x;
++--------------------------------------------------------+
+| Grants for x@%                                         |
++--------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'x'@'%'                          |
+| GRANT ALL PRIVILEGES ON `student`.`persons` TO 'x'@'%' |
++--------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke all on persons from x;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for x;
++-------------------------------+
+| Grants for x@%                |
++-------------------------------+
+| GRANT USAGE ON *.* TO 'x'@'%' |
++-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> grant select,update on persons to x;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for x;
++--------------------------------------------------------+
+| Grants for x@%                                         |
++--------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'x'@'%'                          |
+| GRANT SELECT, UPDATE ON `student`.`persons` TO 'x'@'%' |
++--------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke update on persons from x;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for x;
++------------------------------------------------+
+| Grants for x@%                                 |
++------------------------------------------------+
+| GRANT USAGE ON *.* TO 'x'@'%'                  |
+| GRANT SELECT ON `student`.`persons` TO 'x'@'%' |
++------------------------------------------------+
+2 rows in set (0.00 sec)
