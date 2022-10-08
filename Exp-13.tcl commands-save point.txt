@@ -1,0 +1,64 @@
+mysql> use student;
+Database changed
+
+mysql> create table university(id int(4),college_name char(20),no_of_students int(35),no_of_professors int(15));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into university values(4132,'SAVEETHA',5000,500),(4133,'satya',3000,325),(4134,'VELTECH',4000,450);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM university;
++------+--------------+----------------+------------------+
+| id   | college_name | no_of_students | no_of_professors |
++------+--------------+----------------+------------------+
+| 4132 |  SAVEETHA    |           5000 |              500 |
+| 4133 |  satya       |           3000 |              325 |
+| 4134 |  VELTECH     |           4000 |              450 |
++------+--------------+----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> savepoint insertion;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update university set no_of_students=5400 where id=4132;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update university set id=4133 where college_name='satya';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from university;
++------+--------------+----------------+------------------+
+| id   | college_name | no_of_students | no_of_professors |
++------+--------------+----------------+------------------+
+| 4132 |  SAVEETHA    |           5400 |              500 |
+| 4133 |  satya       |           3000 |              325 |
+| 4134 |  VELTECH     |           4000 |              450 |
++------+--------------+----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> savepoint updation;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> rollback to insertion;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from university;
++------+--------------+----------------+------------------+
+| id   | college_name | no_of_students | no_of_professors |
++------+--------------+----------------+------------------+
+| 4132 |   SAVEETHA   |           5000 |              500 |
+| 4133 |   satya      |           3000 |              325 |
+| 4134 |   VELTECH    |           4000 |              450 |
++------+--------------+----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql>
