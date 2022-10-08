@@ -1,0 +1,51 @@
+mysql> create database bio;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use bio;
+Database changed
+mysql> create table bio(studentid int(12),studentname char(15),gender char(6),phoneno int(10),dofb int(11));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc bio;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| studentid   | int(12)  | YES  |     | NULL    |       |
+| studentname | char(15) | YES  |     | NULL    |       |
+| gender      | char(6)  | YES  |     | NULL    |       |
+| phoneno     | int(10)  | YES  |     | NULL    |       |
+| dofb        | int(11)  | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into bio values(17,'nani','m','799532','2004'),(18,'sai','m','970513','2003'),(19,'priya','f','709352','2002');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from bio;
++-----------+-------------+--------+---------+------+
+| studentid | studentname | gender | phoneno | dofb |
++-----------+-------------+--------+---------+------+
+|        17 | nani        | m      |  799532 | 2004 |
+|        18 | sai         | m      |  970513 | 2003 |
+|        19 | priya       | f      |  709352 | 2002 |
++-----------+-------------+--------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select studentname from bio;
++-------------+
+| studentname |
++-------------+
+| nani        |
+| sai         |
+| priya       |
++-------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from bio where studentname='sai';
++-----------+-------------+--------+---------+------+
+| studentid | studentname | gender | phoneno | dofb |
++-----------+-------------+--------+---------+------+
+|        18 | sai         | m      |  970513 | 2003 |
++-----------+-------------+--------+---------+------+
+1 row in set (0.01 sec)
