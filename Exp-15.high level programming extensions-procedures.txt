@@ -1,0 +1,48 @@
+mysql> use student;
+Database changed
+mysql> DELIMITER ;
+mysql> CALL student();
++------+-------+
+| id   | Name  |
++------+-------+
+|   14 | mani  |
++------+-------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> select*from std;
++------+--------+------+---------+---------+
+| id   | Name   | Age  | Subject | Games   |
++------+--------+------+---------+---------+
+|   14 | mani   |   19 | iot     | footbal |
+|   15 | naveen |   20 | math    | kho kho |
+|   16 | tejesh |   21 | phy     | kabaddi |
+|   17 | rupesh |   22 | che     | shuttle |
++------+--------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from std where subject='math';
++------+-------+------+---------+---------+
+| id   | Name  | Age  | Subject | Games   |
++------+-------+------+---------+---------+
+|   15 | naveen|   20 | math    | kho kho |
++------+-------+------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE stu()
+    -> BEGIN
+    -> SELECT id,Name
+    -> FROM STD
+    -> WHERE Games='shuttle';
+    -> END//
+
+mysql> call stu();
++------+--------+
+| id   | Name   |
++------+--------+
+|   17 | rupesh |
++------+--------+
+1 row in set (0.00 sec)
