@@ -1,0 +1,114 @@
+mysql> USE student;
+Database changed
+mysql> select *from student_report;
++-------+---------+-------+------------+-------+
+| regn0 | name    | marks | totalmarks | Grade |
++-------+---------+-------+------------+-------+
+|  4689 | naren   |    86 |        100 | B     |
+|  4690 | shyam   |    92 |        100 | A     |
+|  4691 | Nivas   |    95 |        100 | S     |
+|  4692 | kishore |    98 |        100 | S     |
++-------+---------+-------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student_report values(4691,'nivas',95,100,'A');
+Query OK, 1 row affected (0.00 sec)
+
+
+mysql> select name,marks,
+    -> case
+    -> when marks<90 then 'excellent'
+    -> when marks>90 then 'outstanding'
+    -> else 'average'
+    -> end performance
+    -> from student_report;
++---------+-------+-------------+
+| name    | marks | performance |
++---------+-------+-------------+
+| naren   |    86 | excellent   |
+| shyam   |    92 | average     |
+| Nivas   |    95 | outstanding |
+| kishore |    98 | outstanding |
+| sanjay  |    87 | excellent   |
++---------+-------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from student_report;
++-------+---------+-------+------------+-------+
+| regn0 | name    | marks | totalmarks | Grade |
++-------+---------+-------+------------+-------+
+|  4689 | naren   |    86 |        100 | B     |
+|  4690 | shyam   |    92 |        100 | A     |
+|  4691 | nivas   |    95 |        100 | S     |
+|  4692 | kishore |    98 |        100 | S     |
+|  4693 | sanjay  |    87 |        100 | B     |
++-------+---------+-------+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into student_report values(4694,'fawaz',88,100,'B'),(4695,'akshay',91,100,'A');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select*from student_report;
++-------+---------+-------+------------+-------+
+| regn0 | name    | marks | totalmarks | Grade |
++-------+---------+-------+------------+-------+
+|  4689 | naren   |    86 |        100 | B     |
+|  4690 | shyam   |    92 |        100 | A     |
+|  4691 | Nivas   |    95 |        100 | S     |
+|  4692 | kishore |    98 |        100 | S     |
+|  4693 | sanjay  |    87 |        100 | B     |
+|  4694 | fawaz   |    88 |        100 | B     |
+|  4695 | akshay  |    91 |        100 | A     |
++-------+---------+-------+------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select name,marks,
+    -> if(marks>75,'Good marks','Average marks')
+    -> from student_report;
++---------+-------+-------------------------------------------+
+| name    | marks | if(marks>75,'Good marks','Average marks') |
++---------+-------+-------------------------------------------+
+| naren   |    86 | Good marks                                |
+| shyam   |    92 | Good marks                                |
+| Nivas   |    95 | Good marks                                |
+| kishore |    98 | Good marks                                |
+| sanjay  |    87 | Good marks                                |
+| fawaz   |    88 | Good marks                                |
+| akshay  |    91 | Good marks                                |
++---------+-------+-------------------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,marks,
+    -> if(marks>80,'Good marks','Average marks')
+    -> from student_report;
++---------+-------+-------------------------------------------+
+| name    | marks | if(marks>80,'Good marks','Average marks') |
++---------+-------+-------------------------------------------+
+| naren   |    86 | Good marks                                |
+| shyam   |    92 | Good marks                                |
+| Nivas   |    95 | Good marks                                |
+| kishore |    98 | Good marks                                |
+| sanjay  |    87 | Good marks                                |
+| fawaz   |    88 | Good marks                                |
+| akshay  |    91 | Good marks                                |
++---------+-------+-------------------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,marks,
+    -> if(marks>90,'Good marks','Average marks')
+    -> from student_report;
++---------+-------+-------------------------------------------+
+| name    | marks | if(marks>90,'Good marks','Average marks') |
++---------+-------+-------------------------------------------+
+| naren   |    86 | average marks                             |
+| shyam   |    92 | good marks                                |
+| Nivas   |    95 | Good marks                                |
+| kishore |    98 | Good marks                                |
+| sanjay  |    87 | Average marks                             |
+| fawaz   |    88 | Average marks                             |
+| akshay  |    91 | Good marks                                |
++---------+-------+-------------------------------------------+
+7 rows in set (0.00 sec)
+
+mysql>
