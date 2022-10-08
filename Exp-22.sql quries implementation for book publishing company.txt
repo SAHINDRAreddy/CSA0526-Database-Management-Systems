@@ -1,0 +1,119 @@
+mysql> use student;
+Database changed
+mysql> create table book_publishing_company
+    -> (book_id int(10),book_name char(25),author_of_book char(25),cost_of_book int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc book_publishing_company;
++----------------+----------+------+-----+---------+-------+
+| Field          | Type     | Null | Key | Default | Extra |
++----------------+----------+------+-----+---------+-------+
+| book_id        | int(10)  | YES  |     | NULL    |       |
+| book_name      | char(25) | YES  |     | NULL    |       |
+| author_of_book | char(25) | YES  |     | NULL    |       |
+| cost_of_book   | int(10)  | YES  |     | NULL    |       |
++----------------+----------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into book_publishing_company values(261,'one_piece','gold_roger',999),(276,'uzumaki_naruto','uzumaki_baruto',599),(289,'demon_slayer','kakashi',799),(299,'booldmoon','steve_stark',399);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select* from book_publishing_company;
++---------+-------------------+-----------------+--------------+
+| book_id | book_name         | author_of_book  | cost_of_book |
++---------+-------------------+-----------------+--------------+
+|     261 | one_piece         | gold_roger      |          999 |
+|     276 | uzumaki_naruto    | uzumaki_baruto  |          599 |
+|     289 | demon_slayer      | kakashi         |          799 |
+|     299 | bloodmoon         | Steve_stark     |          399 |
++---------+-------------------+-----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> update book_publishing_company
+    -> set book_id=289
+    -> where author_of_book='steve_stark';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from book_publishing_company;
++---------+-------------------+-----------------+--------------+
+| book_id | book_name         | author_of_book  | cost_of_book |
++---------+-------------------+-----------------+--------------+
+|     261 | one_piece         | gold_roger      |          999 |
+|     276 | uzumaki_naruto    | uzumaki_baruto  |          599 |
+|     289 | demon_slayer      | kakashi         |          799 |
+|     289 | bloodmoon         | Steve_stark     |          399 |
++---------+-------------------+-----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into book_publishing_company values(278,'legends_game','john_cristopher',699);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from book_publishing_company;
++---------+-------------------+-----------------+--------------+
+| book_id | book_name         | author_of_book  | cost_of_book |
++---------+-------------------+-----------------+--------------+
+|     261 | one_piece         | gold_roger      |          999 |
+|     276 | uzumaki_naruto    | uzumaki_baruto  |          599 |
+|     289 | demon_slayer      | kakashi         |          799 |
+|     299 | bloodmoon         | Steve_stark     |          399 |
+|     278 | legends_game      | john_cristopher |          699 |
++---------+-------------------+-----------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from book_publishing_company
+    -> where book_id=278;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select* from book_publishing_company;
++---------+-------------------+-----------------+--------------+
+| book_id | book_name         | author_of_book  | cost_of_book |
++---------+-------------------+-----------------+--------------+
+|     261 | one_piece         | gold_roger      |          999 |
+|     276 | uzumaki_naruto    | uzumaki_baruto  |          599 |
+|     289 | demon_slayer      | kakashi         |          799 |
+|     299 | bloodmoon         | Steve_stark     |          399 |
++---------+-------------------+-----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> create table authors(author_name char(25),subject_related char(25),written_book char(25));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc authors;
++-----------------+----------+------+-----+---------+-------+
+| Field           | Type     | Null | Key | Default | Extra |
++-----------------+----------+------+-----+---------+-------+
+| author_name     | char(25) | YES  |     | NULL    |       |
+| subject_related | char(25) | YES  |     | NULL    |       |
+| written_book    | char(25) | YES  |     | NULL    |       |
++-----------------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into authors values('peter','biology','spidey'),('steve','chemistry','captain'),('tony','science','intelligence');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from authors;
++-------------+-----------------+------------------+
+| author_name | subject_related | written_book     |
++-------------+-----------------+------------------+
+| peter       | biology         | spidey           |
+| steve       | chemistry       | captain          |
+| tony        | science         | intelligence     |
++-------------+-----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into authors values('tenison','physics','aliens');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from authors;
++-------------+-----------------+------------------+
+| author_name | subject_related | written_book     |
++-------------+-----------------+------------------+
+| peter       | biology         | spidey           |
+| steve       | chemistry       | captain          |
+| tony        | science         | intelligence     |
+| tenison     | physics         | aliens           |
++-------------+-----------------+------------------+
+4 rows in set (0.00 sec)
